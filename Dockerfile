@@ -15,6 +15,7 @@ RUN apt update && apt install -y \
     php php-bcmath php-bz2 php-curl php-gd php-mbstring php-mysql php-zip php-xml \
     apache2 \
     supervisor \
+    unzip \
     && apt clean
 
 # supervisor
