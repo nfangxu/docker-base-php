@@ -16,6 +16,7 @@ RUN apt update && apt install -y \
     apache2 \
     supervisor \
     unzip \
+    cron \
     && apt clean
 
 # Apache 配置
@@ -33,6 +34,9 @@ RUN chmod 755 /usr/bin/composer && /usr/bin/composer config -g repo.packagist co
 # 启动
 COPY init.sh /init.sh
 RUN chmod 755 /init.sh
+
+# laravel 定时任务
+RUN echo "* * * * * /usr/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1" >> /var/spool/cron/crontabs/root
 
 WORKDIR /var/www/html
 
