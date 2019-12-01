@@ -18,6 +18,9 @@ RUN apt update && apt install -y \
     unzip \
     && apt clean
 
+# Apache 配置
+RUN a2enmod proxy && a2enmod proxy_http && a2enmod proxy_balancer && a2enmod rewrite
+
 # supervisor
 COPY conf/supervisord.conf /etc/supervisord.conf
 COPY conf/default.conf /etc/apache2/sites-available/000-default.conf
